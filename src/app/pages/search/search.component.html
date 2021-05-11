@@ -1,0 +1,11 @@
+<ng-container *ngIf="notFound; else elseTemplate">
+  {{ 'search.notFound' | translate }}
+</ng-container>
+<ng-template #elseTemplate>
+  <h1 class="mb-5">{{ 'search.result' | translate }}</h1>
+  <ul class="search-result">
+    <li *ngFor="let item of url">
+      {{ item.type }} <a [routerLink]="[item.url]">{{ item.url }}</a>
+    </li>
+  </ul>
+</ng-template>

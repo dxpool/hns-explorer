@@ -1,0 +1,98 @@
+<div class="card">
+  <div class="card-header">
+    {{ title[type] | translate }}
+    <span class="sub float-right">{{ 'total' | translate }}: {{ total }}</span>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped table-fixed">
+      <thead [ngSwitch]="type">
+        <!-- 当type是blocks时，展示 /blocks 的table head -->
+        <tr *ngSwitchCase="'blocks'">
+          <th scope="col">{{ 'block.height' | translate }}</th>
+          <th scope="col">{{ 'block.miner' | translate }}</th>
+          <th scope="col">{{ 'time' | translate }}</th>
+          <th scope="col" class="block-table-lg">{{ 'block.size' | translate }}</th>
+          <th scope="col" class="block-table-lg">{{ 'block.txAmount' | translate }}</th>
+        </tr>
+
+        <!-- 当type是names时，展示 /names 的 table head -->
+        <tr *ngSwitchCase="'names'">
+          <th scope="col">{{ 'name.name' | translate }}</th>
+          <th scope="col">
+            <div ngbDropdown class="d-inline-block" (openChange)="open($event)">
+              <div id="statusDropdown" ngbDropdownToggle>
+                {{ 'name.' + (selectedStatus === 'all' ? 'status' : selectedStatus) | translate }}
+                <fa-icon [icon]="isOpen ? iconUp : iconDown"></fa-icon>
+              </div>
+              <div ngbDropdownMenu aria-labelledby="statusDropdown">
+                <button ngbDropdownItem *ngFor="let item of status" (click)="changeStatus(item)"
+                  class="{{ item === selectedStatus ? 'disabled' : '' }}">
+                  {{ 'name.' + item | translate }}
+                </button>
+              </div>
+            </div>
+          </th>
+          <th scope="col">{{ 'height' | translate }}</th>
+          <th scope="col">{{ 'name.highest' | translate }}<span class="text-muted">(HNS)</span></th>
+        </tr>
+
+        <!-- 当type是history时，展示 /name/:name界面的history table head -->
+        <tr *ngSwitchCase="'history'">
+          <th scope="col">{{ 'name.option' | translate }}</th>
+          <th scope="col" class="block-table-lg">{{ 'time' | translate }}</th>
+          <th scope="col" class="block-table-lg">{{ 'height' | translate }}</th>
+          <th class="right" scope="col">{{ 'name.value' | translate }}</th>
+          <th scope="col">{{ 'tx.hash' | translate }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="loading; else dataTemplate">{{ 'loading' | translate }} ...</ng-container>
+
+        <ng-template #dataTemplate [ngSwitch]="type">
+          <span *ngIf="list.length === 0">{{ 'empty' | translate }}</span>
+
+          <!-- 当type是blocks时，展示 /blocks 的table -->
+          <ng-container *ngSwitchCase="'blocks'">
+            <tr *ngFor="let item of list">
+              <td><a [routerLink]="[ '/block', item.height ]">{{ item.height }}</a></td>
+              <td>
+                <a *ngIf="item.pool.name" [href]="item.pool.url" target="_blank">
+                  <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png" width="15px">
+                  {{ item.pool.name }}
+                </a>
+              </td>
+              <td class="text-black-50">{{ item.time * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+              <td class="block-table-lg">{{ item.size | number: '1.0' }}</td>
+              <td class="block-table-lg">{{ item.txs }}</td>
+            </tr>
+          </ng-container>
+
+          <!-- 当type是names时，展示 /names 的 table  -->
+          <ng-container *ngSwitchCase="'names'">
+            <tr *ngFor="let item of list">
+              <td width="10"> <a [routerLink]="[ '/name', item.name ]">{{ item.name | nameFormat }}</a></td>
+              <td><span class="badge bg-success">{{ item.state }}</span></td>
+              <td>{{ item.height }}</td>
+              <td>{{ item.highest | coin | number: '1.0-6' }}</td>
+            </tr>
+          </ng-container>
+
+          <!-- 当type是history时，展示 /name/:name界面的history table -->
+          <ng-container *ngSwitchCase="'history'">
+            <tr *ngFor="let item of list">
+              <td>{{ item.action }}</td>
+              <td class="text-black-50 block-table-lg">{{ item.time * 1000 | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+              <td class="block-table-lg"><a [routerLink]="[ '/block', item.height ]">{{ item.height }}</a></td>
+              <td align="right">{{ item.value | coin | number: '1.2-2' }} HNS</td>
+              <td class="text-truncate"><a [routerLink]="[ '/tx', item.txid ]">{{ item.txid }}</a></td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-pagination *ngIf="!loading" [page]="page" [total]="total" [pageSize]="pageSize" [changePage]="changePage">
+</app-pagination>

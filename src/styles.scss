@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules//@ng-select/ng-select/themes/default.theme.css";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+li {
+  list-style: none;
+}
+
+dt {
+  float: left;
+}
+
+dd {
+  text-align: right;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+h1 {
+  font-size: 2em !important;
+}
+
+h3 {
+  font-size: 1.4em !important;
+}
+
+table.table thead th {
+  border-bottom: 2px solid #eeeeee !important;
+}
+
+table tbody td {
+  border-bottom: 1px solid #f3f3f3;
+}
+
+table.table-striped>tbody>tr:nth-of-type(odd) {
+  --bs-table-accent-bg: rgba(0, 0, 0, .03) !important;
+}
+
+.card {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.07);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  color: #344053;
+  font-size: 1rem;
+  font-weight: normal;
+  background-color: #f9fafd !important;
+  padding: 0.8rem 1rem;
+  border-bottom: 0px solid #edf2f9;
+}
+
+.ng-select.custom {
+  box-shadow: none;
+  border: none;
+}
+
+.ng-select.custom .ng-select-container {
+  border: none;
+  box-shadow: none;
+  min-height: auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.ng-select.status .ng-select-container {
+  height: auto !important;
+
+  .ng-value-container {
+    flex: none !important;
+
+    .ng-value {
+      overflow: initial !important;
+    }
+  }
+}
+
+th.right {
+  text-align: right;
+}
+@media(max-width:768px) {
+  .block-table-lg {
+    display: none;
+  }
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

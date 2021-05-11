@@ -1,0 +1,27 @@
+.nav-sm {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+}
+
+.navbar {
+  border-bottom: 1px solid #f0f0f0;
+
+  .nav-item {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  a {
+    font-weight: bold;
+    color: #808B96;
+    font-size: 1.2em;
+  }
+}
+.search {
+  width: 25%;
+}

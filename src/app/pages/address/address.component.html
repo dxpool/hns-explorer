@@ -1,0 +1,14 @@
+<h1 class="mb-5 text-break">{{ 'address.address' | translate }} # {{ address }}</h1>
+<div class="row">
+  <div class="col-md-6">
+    <dt>{{ 'address.balance' | translate }}</dt>
+    <dd><strong>{{ info.confirmed | coin | number: '1.0-6' }}</strong> HNS</dd>
+    <dt>{{ 'address.received' | translate }}</dt>
+    <dd><strong>{{ info.received | coin | number: '1.0-6' }}</strong> HNS</dd>
+    <dt>{{ 'address.spent' | translate }}</dt>
+    <dd><strong>{{ info.spent | coin | number: '1.0-6' }}</strong> HNS</dd>
+  </div>
+</div>
+
+<app-txs [list]="list" [page]="page" [total]="total" [pageSize]="pageSize" [changePage]="changePage.bind(this)" [address]="address">
+</app-txs>

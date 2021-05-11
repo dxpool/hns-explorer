@@ -1,0 +1,55 @@
+<div class="row">
+  <app-list class="col-md-8" [status]="status" [selectedStatus]="selectedStatus" [loading]="loading" [type]="'names'" [list]="lists" [page]="page" [total]="total"
+    [pageSize]="pageSize" [changePage]="changePage.bind(this)" [changeStatus]="changeStatus.bind(this)">
+  </app-list>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        {{ 'title.highestBidPrice' | translate }}
+        <button type="button" class="btn btn-link {{ rankIndex === 0 ? 'disabled' : '' }}" (click)="handleBiddingRank(0)">
+          {{ 'name.month' | translate }}
+        </button>
+        <span>/</span>
+        <button type="button" class="btn btn-link {{ rankIndex === 1 ? 'disabled' : '' }}" (click)="handleBiddingRank(1)">
+          {{ 'name.week' | translate }}
+        </button>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped table-fixed">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'name.name' | translate }}</th>
+              <th scope="col">{{ 'name.bid' | translate }} (+ {{ 'name.blind' | translate }})</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of biddingRank">
+              <td><a [routerLink]="[ '/name', item.name ]">{{ item.name | nameFormat }}</a></td>
+              <td>{{ item.highest | coin | number: '1.0-6' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">{{ 'title.highestHistory' | translate }}</div>
+      <div class="card-body">
+        <table class="table table-striped table-fixed">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'name.name' | translate }}</th>
+              <th scope="col">{{ 'name.value' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of highestHistory">
+              <td><a [routerLink]="[ '/name', item.name ]">{{ item.name | nameFormat }}</a></td>
+              <td>{{ item.value | coin | number: '1.0-6' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

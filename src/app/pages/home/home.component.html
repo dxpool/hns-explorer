@@ -1,0 +1,158 @@
+<section>
+  <h2 class="title mb-3">{{ 'home.status' | translate }}</h2>
+  <div class="row">
+    <div class="col-md-8 row detail">
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faCubes" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.hashrate' | translate }}</div>
+          <h3>{{ network.hashrate.amount | number: '1.0-4' }} {{ network.hashrate.unit }}</h3>
+        </div>
+      </div>
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faExchangeAlt" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.tx' | translate }}</div>
+          <h3>{{ network.txs }}</h3>
+        </div>
+      </div>
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faDatabase" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.network' | translate }}</div>
+          <h3>{{ network.network }}</h3>
+        </div>
+      </div>
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faEnvelopeOpenText" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.openedNames' | translate }}</div>
+          <h3>{{ network.names | number: '1.0' }}</h3>
+        </div>
+      </div>
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faCogs" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.difficulty' | translate }}</div>
+          <h3>{{ network.diff.sub | number: '1.0-4' }} x 10<sup>{{ network.diff.sup }}</sup></h3>
+        </div>
+      </div>
+      <div class="mb-3 col-md-4 col-6 detail-item">
+        <fa-icon [icon]="faBriefcase" class="col-md-2 d-none d-lg-block"></fa-icon>
+        <div>
+          <div class="mb-1 detail-text">{{ 'home.chainwork' | translate }}</div>
+          <h3>{{ network.chainwork.sub | number: '1.0-4' }} x 10<sup>{{ network.chainwork.sup }}</sup></h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 px-0">
+      <ng-container *ngIf="trans.currentLang==='zh'; else enTemplate">
+        <coingecko-coin-ticker-widget coin-id="handshake" currency="usd" locale="zh"></coingecko-coin-ticker-widget>
+      </ng-container>
+      <ng-template #enTemplate>
+        <coingecko-coin-ticker-widget coin-id="handshake" currency="usd" locale="en"></coingecko-coin-ticker-widget>
+      </ng-template>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="title mb-3">{{ 'home.newBlock' | translate }}</h2>
+  <table class="table table-striped mb-5">
+    <thead>
+      <tr>
+        <th scope="col">{{ 'block.height' | translate }}</th>
+        <th scope="col">{{ 'block.miner' | translate }}</th>
+        <th scope="col">{{ 'time' | translate }}</th>
+        <th scope="col" class="block-table-lg">{{ 'block.size' | translate }}</th>
+        <th scope="col" class="block-table-lg">{{ 'block.txAmount' | translate }}</th>
+        <th scope="col" class="block-table-lg">{{ 'fee' |translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of blocks">
+        <td><a [routerLink]="[ '/block', item.height ]">{{ item.height }}</a></td>
+        <td>
+          <a *ngIf="item.pool.name" [href]="item.pool.url" target="_blank">
+            <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png" width="15px">
+            {{ item.pool.name }}
+          </a>
+        </td>
+        <td>{{ item.time * 1000 | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td class="block-table-lg">{{ item.size | number: '1.0' }}</td>
+        <td class="block-table-lg">{{ item.txs | number: '1.0' }}</td>
+        <td class="block-table-lg">{{ item.fees | coin | number: '1.0-6' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2 class="title mb-3">{{ 'home.poolCount' | translate }}
+    <button type="button" class="btn btn-link {{ currentSpan === 7 ? 'disabled' : '' }}" (click)="handlePoolChart(7)">
+      {{ 'pool.aWeek' | translate }}
+    </button>
+    <span>/</span>
+    <button type="button" class="btn btn-link {{ currentSpan === 3 ? 'disabled' : '' }}" (click)="handlePoolChart(3)">
+      {{ 'pool.threeDays' | translate }}
+    </button>
+    <span>/</span>
+    <button type="button" class="btn btn-link {{ currentSpan === 1 ? 'disabled' : '' }}" (click)="handlePoolChart(1)">
+      {{ 'pool.aDay' | translate }}
+    </button>
+  </h2>
+
+  <div class="row">
+    <div class="col-md-6"><canvas id="poolPie">{{ poolPieChart }}</canvas></div>
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'pool.name' | translate }}</th>
+            <th>{{ 'pool.count' | translate }}</th>
+            <th>{{ 'pool.share' | translate}}</th>
+            <th class="block-table-lg">{{ 'pool.hashrate' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of poolData">
+            <td>
+              <ng-container *ngIf="item.url; else networkTemplate">
+                <a [href]="item.url" target="_blank">
+                  <img src="../../../assets/images/pools/{{ item.poolName | lowercase }}.png" width="14px">
+                  {{ item.poolName }}
+                </a>
+              </ng-container>
+              <ng-template #networkTemplate>
+                {{ item.poolName }}
+              </ng-template>
+            </td>
+            <td>{{ item.count }}</td>
+            <td>{{ item.share | percent: '1.0-2' }}</td>
+            <td class="block-table-lg">{{ item.hashrate.amount | number: '1.0-4' }} {{ item.hashrate.unit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="title mb-3">{{ 'home.newTx' | translate }}</h2>
+  <table class="table table-striped table-fixed mb-5">
+    <thead>
+      <tr>
+        <th>{{ 'tx.hash' | translate }}</th>
+        <th class="block-table-lg">{{ 'fee' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of txs">
+        <td><a [routerLink]="[ '/tx', item.hash ]">
+            <div class="text-truncate">{{ item.hash }}</div>
+          </a></td>
+        <td class="block-table-lg">{{ item.fee | coin | number: '1.0-6' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

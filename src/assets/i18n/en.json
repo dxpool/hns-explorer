@@ -1,0 +1,136 @@
+{
+  "time": "Time",
+  "fee": "Fee",
+  "loading": "Loading",
+  "empty": "No Data",
+  "height": "Height",
+  "difficulty": "Difficulty",
+  "total": "Total",
+  "head": {
+    "title": {
+      "home": "HNS Explorer",
+      "blocks": "HNS | Blocks",
+      "block": "HNS | Block # ",
+      "names": "HNS | Names",
+      "name": "HNS | Name # ",
+      "address": "HNS | Address # ",
+      "charts": "HNS | Charts",
+      "tx": "HNS | Tx # "
+    }
+  },
+  "header": {
+    "home": "Home",
+    "blocks": "Blocks",
+    "names": "Names",
+    "charts": "Charts",
+    "search": "search"
+  },
+  "title": {
+    "summary": "Summary",
+    "txList": "Tx List",
+    "blocks": "Block List",
+    "names": "Name List",
+    "history": "History",
+    "highestBidPrice": "Highest Bidding Price",
+    "highestHistory": "Highest Price History"
+  },
+  "home": {
+    "status": "Network Status",
+    "hashrate": "Network Hashrate",
+    "tx": "Unconfirmed Tx",
+    "network": "Network Type",
+    "openedNames": "Opened Names",
+    "difficulty": "Difficulty",
+    "chainwork": "Chainwork",
+    "newBlock": "New Blocks",
+    "newTx": "New Tx",
+    "poolCount": "Pool Count"
+  },
+  "block": {
+    "block": "Block",
+    "height": "Height",
+    "miner": "Miner",
+    "size": "Size",
+    "txAmount": "Tx Amount",
+    "confirmation": "Confirmations",
+    "hash": "Block Hash",
+    "previous": "Previous Block",
+    "first": "First Block",
+    "next": "Next Block",
+    "newest": "Newest Block",
+    "merkleRoot": "Merkle Root",
+    "bits": "bits",
+    "nonce": "nonce"
+  },
+  "address": {
+    "address": "Address",
+    "balance": "Balance",
+    "received": "Total Received",
+    "spent": "Total Spent"
+  },
+  "tx": {
+    "tx": "Tx",
+    "hash": "Tx Hash",
+    "fee": "Fee",
+    "amount": "Amount",
+    "input": "Input",
+    "output": "Output",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "bidTime": "Bid Time",
+    "id": "ID",
+    "bidValueAndBlind": "Bid Value + Blind",
+    "lockup": "Lockup Amount",
+    "bidRecord": "Bid Record",
+    "unrevealed": "Unrevealed"
+  },
+  "name": {
+    "name": "Name",
+    "hash": "Name Hash",
+    "status": "Status",
+    "nextStatus": "Next Status",
+    "nextStatusBlock": "Next Status Block",
+    "reserved": "Reserved",
+    "height": "Height",
+    "highest": "Highest",
+    "renewal": "Renewal",
+    "value": "Value",
+    "weak": "Weak",
+    "transfer": "Transfer",
+    "revoked": "Revoked",
+    "option": "Option",
+    "bid": "Bidding Price",
+    "blind": "added blind",
+    "week": "1 Week",
+    "month": "1 Month",
+    "all": "ALL",
+    "opening": "OPENING",
+    "bidding": "BIDDING",
+    "reveal": "REVEAL",
+    "closed": "CLOSED",
+    "locked": "LOCKED"
+  },
+  "chart": {
+    "coin": "Coin Information",
+    "tx": "Tx Information",
+    "network": "Network Information",
+    "burnedAmount": "Burned Amount",
+    "supplyAmount": "Supply Amount",
+    "dailyTransactions": "Daily Transactions",
+    "dailyTotalTransactions": "Daily Total Transactions",
+    "difficulty": "Difficulty"
+  },
+  "pool": {
+    "name": "Pool",
+    "count": "Blocks Mined",
+    "share": "Hashrate Share",
+    "hashrate": "Hashrate",
+    "aWeek": "1 Week",
+    "threeDays": "3 Days",
+    "aDay": "24 Hours"
+  },
+  "search": {
+    "result": "We found multiple resources matching your search：",
+    "notFound": "No search results found"
+  }
+}

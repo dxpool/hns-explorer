@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-light">
+  <div class="container">
+    <div>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="../../../assets/hns-logo.png" height="32" width="32" />
+      </a>
+    </div>
+
+    <button class="btn d-md-none" (click)="showMobileNav()">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+
+    <div id="navbarSupportedContent" class="{{ mobileNav ? 'nav-sm' : 'collapse navbar-collapse' }}">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {{ getHighlight('home') }}" [routerLink]="['/']">
+            {{ 'header.home' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ getHighlight('blocks') }}" [routerLink]="['/blocks']">
+            {{ 'header.blocks' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ getHighlight('names') }}" [routerLink]="['/names']">
+            {{ 'header.names' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ getHighlight('charts') }}" [routerLink]="['/charts']">
+            {{ 'header.charts' | translate }}
+          </a>
+        </li>
+      </ul>
+      <form class="d-flex" #f="ngForm" (ngSubmit)="search(f)">
+        <input class="form-control" type="search" placeholder="{{ 'header.search' | translate }}" aria-label="Search"
+          ngModel required #first="ngModel" name="query">
+      </form>
+      <ng-select class="custom mr-2" [(ngModel)]="selectedLang" [clearable]="false" [searchable]="false"
+        (change)="change($event)">
+        <ng-option *ngFor="let item of languages" [value]="item.name">
+          <img [src]="item.avatar" />
+          {{ item.name }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+</nav>

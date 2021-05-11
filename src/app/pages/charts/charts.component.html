@@ -1,0 +1,26 @@
+<div class="card-header mb-3">{{ 'chart.coin' | translate }}</div>
+<div class="row mb-5">
+  <div class="col-md-6">
+    <canvas id="supply">{{ supplyChart }}</canvas>
+  </div>
+  <div class="col-md-6">
+    <canvas id="burned">{{ burnedChart }}</canvas>
+  </div>
+</div>
+
+<div class="card-header mb-3">{{ 'chart.tx' | translate }}</div>
+<div class="row mb-5">
+  <div class="col-md-6">
+    <canvas id="tx">{{ txChart }}</canvas>
+  </div>
+  <div class="col-md-6">
+    <canvas id="totalTx">{{ totalTxChart }}</canvas>
+  </div>
+</div>
+
+<div class="card-header mb-3">{{ 'chart.network' | translate }}</div>
+<div class="row">
+  <div class="col-md-6">
+    <canvas id="diff">{{ diffChart }}</canvas>
+  </div>
+</div>

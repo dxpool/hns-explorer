@@ -1,0 +1,55 @@
+<h3 class="mt-5 mb-3">{{ 'title.txList' | translate }}</h3>
+<div class="tx-item" *ngFor="let item of data">
+  <div class="card">
+    <div class="card-header">
+      {{ 'tx.tx' | translate }} # <a class="txid-link" [routerLink]="[ '/tx', item.hash ]">{{ item.hash }}</a>
+      <span class="time">{{ item.time * 1000 | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+      <span class="float-right">{{ 'tx.fee' | translate }}: {{ item.fee | coin | number: '1.0-6' }}</span>
+    </div>
+
+    <div class="card-body row">
+      <div class="col-md-5 tx-inputs">
+        <p>{{ 'tx.inputs' | translate }}</p>
+        <ul class="pl-0">
+          <li *ngFor="let input of item.inputs" class="mb-2">
+            <span *ngIf="!input.address; else inputTemplate" class="badge bg-primary">{{ input.from }}</span>
+            <ng-template #inputTemplate>
+              <a #inputTemplate [routerLink]="[ '/address', input.address ]" class="{{ address === input.address ? 'highlight' : '' }}">
+                {{ input.address }}
+              </a>
+            </ng-template>
+            <span *ngIf="input.value" class="float-right">{{ input.value | coin | number: '1.6-6' }} HNS</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <p class="direction"></p>
+      </div>
+      <div class="col-md-5">
+        <p>{{ 'tx.outputs' | translate }}</p>
+        <ul class="pl-0">
+          <li *ngFor="let output of item.outputs" class="mb-2">
+            <ng-container *ngIf="output.action!=='NONE'; else addressLink">
+              <span class="badge bg-success">{{ output.action }}</span> FOR
+              <a [routerLink]="[ '/name', output.name ]">
+                {{ output.name | nameFormat }}
+              </a>
+            </ng-container>
+            <ng-template #addressLink>
+              <a [routerLink]="[ '/address', output.address ]" class="{{ address === output.address ? 'highlight' : '' }}">
+                {{ output.address }}
+              </a>
+              <span class="float-right">
+                {{ output.value | coin | number: '1.6-6' }} HNS
+              </span>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<app-pagination [page]="page" [total]="total" [pageSize]="pageSize" [changePage]="changePage"></app-pagination>

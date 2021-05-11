@@ -1,0 +1,57 @@
+<h2 class="mb-3">{{ 'block.block' | translate }} # {{ height }}</h2>
+<div class="card">
+  <div class="card-header">{{ 'title.summary' | translate }}</div>
+  <div class="card-body">
+    <div class="row block-summary">
+      <div class="col-md-5">
+        <dt>{{ 'time' | translate }}</dt>
+        <dd>{{ data.time * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</dd>
+        <dt>{{ 'difficulty' | translate }}</dt>
+        <dd>{{ data.difficulty | number: '1.0-4' }}</dd>
+        <dt>{{ 'block.size' | translate }}</dt>
+        <dd>{{ data.weight | number: '1.0' }}</dd>
+        <dt *ngIf="data.pool.name">{{ 'block.miner' | translate }}</dt>
+        <dd *ngIf="data.pool.name">
+          <a [href]="data.pool.url"><img src="../../../assets/images/pools/{{ data.pool.name | lowercase }}.png" width="15px">
+            {{ data.pool.name }}
+          </a>
+        </dd>
+        <dt>{{ 'block.confirmation' | translate }}</dt>
+        <dd>{{ data.confirmations }}</dd>
+        <dt>{{ 'fee' | translate }}</dt>
+        <dd>{{ data.fees | coin | number: '1.0-6' }}</dd>
+      </div>
+      <div class="col-md-7">
+        <dt>{{ 'block.hash' | translate }}</dt>
+        <dd>{{ data.hash }}</dd>
+        <dt>{{ 'block.previous' | translate }}</dt>
+        <dd>
+          <ng-container *ngIf="data.prevBlock; else prevBlock">
+            <a [routerLink]="[ '/block', height-1 ]">{{ data.prevBlock }}</a>
+          </ng-container>
+          <ng-template #prevBlock>
+            {{ 'block.first' | translate }}
+          </ng-template>
+        </dd>
+        <dt>{{ 'block.next' |translate }}</dt>
+        <dd>
+          <ng-container *ngIf="data.nextHash; else nextBlock">
+            <a [routerLink]="[ '/block', height+1 ]">{{ data.nextHash }}</a>
+          </ng-container>
+          <ng-template #nextBlock>
+            {{ 'block.newest' | translate }}
+          </ng-template>
+        </dd>
+        <dt>{{ 'block.merkleRoot' | translate }}</dt>
+        <dd>{{ data.merkleRoot }}</dd>
+        <dt>{{ 'block.bits' | translate }}</dt>
+        <dd>{{ data.bits }}</dd>
+        <dt>{{ 'block.nonce' | translate }}</dt>
+        <dd>{{ data.nonce }}</dd>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-txs [list]="txs" [page]="page" [total]="total" [pageSize]="pageSize" [changePage]="changePage.bind(this)">
+</app-txs>

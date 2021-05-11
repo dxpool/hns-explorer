@@ -1,0 +1,136 @@
+{
+  "time": "时间",
+  "fee": "手续费",
+  "loading": "加载中",
+  "empty": "暂无数据",
+  "height": "高度",
+  "difficulty": "难度",
+  "total": "总计",
+  "head": {
+    "title": {
+      "home": "HNS 浏览器",
+      "blocks": "HNS | 区块记录",
+      "block": "HNS | 区块 # ",
+      "names": "HNS | 域名记录",
+      "name": "HNS | 域名 # ",
+      "address": "HNS | 地址 # ",
+      "charts": "HNS | 图表信息",
+      "tx": "HNS | 交易 # "
+    }
+  },
+  "header": {
+    "home": "首页",
+    "blocks": "区块",
+    "names": "域名",
+    "charts": "图表",
+    "search": "搜索"
+  },
+  "title": {
+    "summary": "摘要",
+    "txList": "交易列表",
+    "blocks": "区块列表",
+    "names": "域名列表",
+    "history": "历史",
+    "highestBidPrice": "最高出价域名排行",
+    "highestHistory": "历史最高拍中价格域名排行"
+  },
+  "home": {
+    "status": "网络状态",
+    "hashrate": "全网算力",
+    "tx": "待确认交易",
+    "network": "网络类型",
+    "openedNames": "开放的域名",
+    "difficulty": "难度",
+    "chainwork": "链工作量",
+    "newBlock": "最新区块",
+    "newTx": "最新交易",
+    "poolCount": "矿池统计"
+  },
+  "block": {
+    "block": "区块",
+    "height": "高度",
+    "miner": "矿工",
+    "size": "块大小",
+    "txAmount": "交易数量",
+    "confirmation": "确认数",
+    "hash": "区块哈希",
+    "previous": "上一区块",
+    "first": "首个区块",
+    "next": "下一区块",
+    "newest": "最新区块",
+    "merkleRoot": "Merkle Root",
+    "bits": "bits",
+    "nonce": "nonce"
+  },
+  "address": {
+    "address": "地址",
+    "balance": "余额",
+    "received": "总接收",
+    "spent": "总支出"
+  },
+  "tx": {
+    "tx": "交易",
+    "hash": "交易哈希",
+    "amount": "数量",
+    "fee": "手续费",
+    "input": "输入",
+    "output": "输出",
+    "inputs": "输入",
+    "outputs": "输出",
+    "bidTime": "出价时间",
+    "id": "ID",
+    "bidValueAndBlind": "竞标金额 + 盲注",
+    "lockup": "总出价",
+    "bidRecord": "出价记录",
+    "unrevealed": "未揭示"
+  },
+  "name": {
+    "name": "域名",
+    "hash": "域名哈希",
+    "status": "当前状态",
+    "nextStatus": "下个状态",
+    "nextStatusBlock": "下个状态区块",
+    "reserved": "是否保留",
+    "height": "块高",
+    "highest": "最高价",
+    "renewal": "续期",
+    "value": "拍中价",
+    "weak": "Weak",
+    "transfer": "转让",
+    "revoked": "撤销",
+    "option": "操作",
+    "bid": "下注价格",
+    "blind": "盲注",
+    "week": "本周",
+    "month": "本月",
+    "all": "全部",
+    "opening": "OPENING",
+    "bidding": "BIDDING",
+    "reveal": "REVEAL",
+    "closed": "CLOSED",
+    "locked": "LOCKED"
+  },
+  "chart": {
+    "coin": "币种信息",
+    "tx": "交易信息",
+    "network": "网络信息",
+    "burnedAmount": "销毁数量",
+    "supplyAmount": "累计生产数量",
+    "dailyTransactions": "每天交易数量",
+    "dailyTotalTransactions": "累计交易数量",
+    "difficulty": "网络难度"
+  },
+  "pool": {
+    "name": "矿池",
+    "count": "出块数",
+    "share": "占比",
+    "hashrate": "算力",
+    "aWeek": "1周",
+    "threeDays": "3天",
+    "aDay": "24小时"
+  },
+  "search": {
+    "result": "匹配如下搜索结果：",
+    "notFound": "未发现搜索结果"
+  }
+}

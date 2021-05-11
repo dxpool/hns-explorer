@@ -1,0 +1,71 @@
+<h2 class="mb-3">{{ 'name.name' | translate }} # {{ data.name | nameFormat }}</h2>
+<div class="card mb-5">
+  <div class="card-header">{{ 'title.summary' | translate }}</div>
+  <div class="card-body">
+    <div class="row name-summary">
+      <div class="col-md">
+        <dt>{{ 'name.hash' | translate }}</dt>
+        <dd>{{ data.hash }}</dd>
+        <dt>{{ 'name.status' | translate }}</dt>
+        <dd><span class="badge bg-success">{{ data.state }}</span></dd>
+        <dt>{{ 'name.nextStatus' | translate }}</dt>
+        <dd><span class="badge bg-success">{{ data.nextState }}</span></dd>
+        <dt>{{ 'name.nextStatusBlock' | translate }}</dt>
+        <dd>{{ data.blocksUntil }}</dd>
+        <dt>{{ 'name.reserved' | translate }}</dt>
+        <dd>{{ data.reserved }}</dd>
+        <dt>{{ 'height' | translate }}</dt>
+        <dd>{{ data.height }}</dd>
+      </div>
+      <div class="col-md">
+        <dt>{{ 'name.renewal' | translate }}</dt>
+        <dd>{{ data.renewal }}</dd>
+        <dt>{{ 'name.value' | translate }}</dt>
+        <dd>{{ data.value | coin | number: '1.0-6' }} HNS</dd>
+        <dt>{{ 'name.highest' | translate }}</dt>
+        <dd>{{ data.highest | coin | number: '1.0-6' }} HNS</dd>
+        <dt>{{ 'name.weak' | translate }}</dt>
+        <dd>{{ data.weak }}</dd>
+        <dt>{{ 'name.transfer' | translate }}</dt>
+        <dd>{{ data.transfer }}</dd>
+        <dt>{{ 'name.revoked' | translate }}</dt>
+        <dd>{{ data.revoked }}</dd>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-5">
+  <div class="card-header">{{ 'tx.bidRecord' | translate }}</div>
+  <div class="card-body">
+    <table class="table table-striped table-fixed">
+      <thead>
+        <tr>
+          <th width="10%" scope="col">{{ 'tx.id' | translate }}</th>
+          <th scope="col">{{ 'tx.bidTime' | translate }}</th>
+          <th class="right" scope="col">{{ 'tx.bidValueAndBlind' | translate }}</th>
+          <th class="right" scope="col">{{ 'tx.lockup' | translate }}</th>
+          <th scope="col">{{ 'tx.hash' | translate }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of bids" [ngClass]="{'win': item.win}">
+          <td class="text-black-50">{{ item.id }}</td>
+          <td class="text-black-50">{{ item.time * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td align="right">
+            <ng-container *ngIf="item.revealed; else lockupTemplate">
+              {{ item.value | coin | number: '1.2-2' }} HNS  <span class="text-black-50"> + {{ item.lockup - item.value | coin | number: '1.2-2' }} HNS </span>
+            </ng-container>
+            <ng-template #lockupTemplate>未揭示</ng-template>
+          </td>
+          <td align="right">{{ item.lockup | coin | number: '1.2-2' }} HNS</td>
+          <td class="text-truncate"><a [routerLink]="[ '/tx', item.txid ]">{{ item.txid }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-list [loading]="loading" [type]="'history'" [list]="list" [page]="page" [total]="total" [pageSize]="pageSize"
+  [changePage]="changePage.bind(this)"></app-list>

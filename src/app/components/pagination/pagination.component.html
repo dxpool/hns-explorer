@@ -1,0 +1,13 @@
+<nav aria-label="Page navigation" *ngIf="max > 1">
+  <ul class="pagination justify-content-center mt-5">
+    <li class="page-item {{ page==1 ? 'disabled' : '' }}">
+      <a class="page-link" (click)="changePage(page/1-1)">&laquo;</a>
+    </li>
+    <li class="page-item {{ item.inactive ? 'disabled' : '' }}" *ngFor="let item of pagination">
+      <a class="page-link" (click)="changePage(item.page)">{{ item.display }}</a>
+    </li>
+    <li class="page-item {{ page==max ? 'disabled' : '' }}">
+      <a class="page-link" (click)="changePage(page/1+1)">&raquo;</a>
+    </li>
+  </ul>
+</nav>

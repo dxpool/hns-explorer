@@ -1,0 +1,66 @@
+<h1 class="text-break">{{ 'tx.tx' | translate }} # {{ txid }}</h1>
+
+<div class="card">
+  <div class="card-header">{{ 'title.summary' | translate }}</div>
+  <div class="card-body">
+    <div class="row block-summary">
+      <div class="col-md-5">
+        <dt>{{ 'time' | translate }}</dt>
+        <dd>{{ data.time * 1000 | date: 'yyyy-MM-dd HH:mm:ss' }}</dd>
+        <dt>{{ 'block.confirmation' | translate }}</dt>
+        <dd>{{ data.confirmations }}</dd>
+        <dt>{{ 'block.height' | translate }}</dt>
+        <dd><a [routerLink]="[ '/block/', data.height ]">{{ data.height }}</a></dd>
+      </div>
+      <div class="col-md">
+        <dt>{{ 'tx.amount' | translate }}</dt>
+        <dd>{{ value | coin | number: '1.0-6' }} HNS</dd>
+        <dt>{{ 'fee' | translate }}</dt>
+        <dd>{{ data.fee | coin | number: '1.0-6' }} HNS</dd>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header">
+    <span class="float-right">{{ 'tx.fee' | translate }}: {{ data.fee | coin | number: '1.0-6' }}</span>
+  </div>
+  <div class="card-body row">
+    <div class="col-md-5 tx-inputs">
+      <p>{{ 'tx.input' | translate }}</p>
+      <ul class="pl-0">
+        <li *ngFor="let input of data.inputs" class="mb-2">
+          <ng-container *ngIf="!input.address; else inputTemplate">
+            <span class="badge bg-primary">{{ input.from }}</span>
+          </ng-container>
+          <ng-template #inputTemplate>
+            <a [routerLink]="[ '/address', input.address ]">{{ input.address }}</a>
+          </ng-template>
+          <span *ngIf="input.value" class="float-right">{{ input.value | coin | number: '1.0-6' }} HNS</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-2">
+      <p class="direction"></p>
+    </div>
+    <div class="col-md-5">
+      <p>{{ 'tx.output' | translate }}</p>
+      <ul class="pl-0">
+        <li *ngFor="let output of data.outputs" class="mb-2">
+          <ng-container *ngIf="output.action!=='NONE'; else addressLink">
+            <span class="badge bg-success">{{ output.action }}</span> FOR
+            <a [routerLink]="[ '/name', output.name ]">{{ output.name }}</a>
+          </ng-container>
+          <ng-template #addressLink>
+            <a [routerLink]="[ '/address', output.address ]">{{ output.address }}</a>
+            <span class="float-right">
+                {{ output.value | coin | number: '1.0-6' }} HNS
+              </span>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.sub {
+  font-size: 0.9rem;
+  color: #888888;
+  font-weight: normal;
+}
+
+#statusDropdown {
+  cursor: pointer;
+}
+
+#statusDropdown::after {
+  content: none;
+}
