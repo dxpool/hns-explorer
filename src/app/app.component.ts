@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'hns-explorer';
 
   constructor(private translateService: TranslateService) {
-    this.translateService.addLangs(['zh', 'en']);
+    this.translateService.addLangs(['zh', 'en', 'zh-tw']);
 
     let saveLang = localStorage.getItem('lang');
     if (!saveLang) saveLang = navigator.language.match('en') ? 'en' : 'zh';

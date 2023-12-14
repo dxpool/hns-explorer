@@ -19,16 +19,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   type = 'home';
   heroForm: FormGroup;
   languages = [
-    { name: '简体中文', avatar: '../../../assets/images/flags/zh.png' },
-    { name: 'English', avatar: '../../../assets/images/flags/en.png' }
+    { name: '简体中文', type: 'zh', avatar: '../../../assets/images/flags/zh.png' },
+    { name: 'English', type: 'en', avatar: '../../../assets/images/flags/en.png' },
+    { name: '繁體中文', type: 'zh-tw', avatar: '../../../assets/images/flags/zh.png' }
   ];
   selectedLang = null;
 
   titles = {
-    home: { zh: 'HNS 浏览器', en: 'HNS Explorer' },
-    blocks: { zh: 'HNS | 区块记录', en: 'HNS | Blocks' },
-    block: { zh: 'HNS | 区块 # ', en: 'HNS | Block # ' },
-    names: { zh: 'HNS | 域名记录', en: 'HNS' }
+    home: { zh: 'HNS 浏览器', en: 'HNS Explorer', 'zh-tw': 'HNS 瀏覽器' },
+    blocks: { zh: 'HNS | 区块记录', en: 'HNS | Blocks', 'zh-tw': 'HNS | 區塊記錄'  },
+    block: { zh: 'HNS | 区块 # ', en: 'HNS | Block # ', 'zh-tw': 'HNS | 區塊 #' },
+    names: { zh: 'HNS | 域名记录', en: 'HNS', 'zh-tw': 'HNS | 域名記錄' }
   }
 
   constructor(private router: Router, private translateService: TranslateService, private title: Title) {
@@ -43,8 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.selectedLang =
-      this.translateService.currentLang === 'en' ? this.languages[1].name : this.languages[0].name;
+    this.selectedLang = this.translateService.currentLang;
   }
 
   ngOnDestroy(): void {
@@ -70,9 +70,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   change(item: string) {
-    const type = item === 'English' ? 'en' : 'zh';
-    this.translateService.use(type);
-    localStorage.setItem('lang', type);
+    this.translateService.use(item);
+    localStorage.setItem('lang', item);
     this.setTitleAndNav(this.url);
   }
 
