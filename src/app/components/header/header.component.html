@@ -40,7 +40,6 @@
       <ng-select class="custom mr-2" [(ngModel)]="selectedLang" [clearable]="false" [searchable]="false"
         (change)="change($event)">
         <ng-option *ngFor="let item of languages" [value]="item.type">
-          <img [src]="item.avatar" />
           {{ item.name }}
         </ng-option>
       </ng-select>

@@ -19,9 +19,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   type = 'home';
   heroForm: FormGroup;
   languages = [
-    { name: '简体中文', type: 'zh', avatar: '../../../assets/images/flags/zh.png' },
-    { name: 'English', type: 'en', avatar: '../../../assets/images/flags/en.png' },
-    { name: '繁體中文', type: 'zh-tw', avatar: '../../../assets/images/flags/zh.png' }
+    { name: '简体中文', type: 'zh' },
+    { name: 'English', type: 'en' },
+    { name: '繁體中文', type: 'zh-tw' }
   ];
   selectedLang = null;
 
