@@ -3,6 +3,12 @@
   "account_id": "2a4a41cba79428bc92dfc4fcbd5dfb18",
   "compatibility_date": "2026-09-14",
   "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "e.hnsfans.com/*",
+      "zone_name": "hnsfans.com"
+    }
+  ],
   "assets": {
     "directory": "./dist/hns-explorer",
     "not_found_handling": "single-page-application"

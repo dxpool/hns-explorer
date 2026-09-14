@@ -51,4 +51,5 @@ npx wrangler@4.131.2 deploy
 ```
 
 The Worker serves `dist/hns-explorer` as static assets and falls back to
-`index.html` for Angular routes.
+`index.html` for Angular routes. Production traffic is routed from
+`e.hnsfans.com/*` to this Worker.
