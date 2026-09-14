@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { configureComponentTest } from '../../component-test-setup.spec';
+import { configureComponentTest } from '../../component-test-setup';
 import { BlockComponent } from './block.component';
 
 describe('BlockComponent', () => {

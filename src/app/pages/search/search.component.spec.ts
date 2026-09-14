@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { configureComponentTest } from '../../component-test-setup.spec';
+import { configureComponentTest } from '../../component-test-setup';
 import { ApiService } from '../../services/api.service';
 import { SearchComponent } from './search.component';
 
