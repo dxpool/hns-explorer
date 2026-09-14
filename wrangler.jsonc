@@ -5,8 +5,8 @@
   "workers_dev": true,
   "routes": [
     {
-      "pattern": "e.hnsfans.com/*",
-      "zone_name": "hnsfans.com"
+      "pattern": "e.hnsfans.com",
+      "custom_domain": true
     }
   ],
   "assets": {
