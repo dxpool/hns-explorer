@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
+    "prebuild": "node scripts/generate-environment.js",
     "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",

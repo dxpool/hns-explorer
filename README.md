@@ -11,7 +11,8 @@ The Handshake explorer can display information about Handshake, such as blocks, 
 * `npm install`
 
 ### 2. Environment Configuration
-* All the configuration files are under `src/environments`. The default configuration file is `environment.ts`. In `--prod` mode, `environment.prod.ts` will be used.
+* Development uses `src/environments/environment.ts` and the local `/api` proxy.
+* Production configuration is generated from `API_BASE_URL` before each build. The generated `src/environments/environment.prod.ts` file is intentionally ignored by Git.
 
 ### 3. Local Test
 * When running locally, you need to configure the API proxy to forward the request to the correct route. Create a file `proxy.conf.json` under the directory `src/`, and configure it as follows, where `target` can be configured as the `hns-backend` service run by yourself：
@@ -31,5 +32,19 @@ The Handshake explorer can display information about Handshake, such as blocks, 
 ```
 
 ### 4. Build
-* In the `src/environments/`, copy `environment.ts` and rename it to `environment.prod.ts`; if there is a `Google Tag Manager` configuration, you can configure the ID in the file.
-* `npm run build`
+* Configure the public HTTPS API endpoint and build:
+
+```
+API_BASE_URL=https://api.hnsfans.com npm run build
+```
+
+The production output is written to `dist/hns-explorer`.
+
+### 5. Cloudflare Pages
+
+Configure the Pages project with:
+
+* Build command: `npm run build`
+* Build output directory: `dist/hns-explorer`
+* Environment variable: `API_BASE_URL=https://api.hnsfans.com`
+* Environment variable: `NODE_VERSION=24.15.0`
