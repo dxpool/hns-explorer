@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { configureComponentTest } from '../../component-test-setup.spec';
 import { ChartsComponent } from './charts.component';
 
 describe('ChartsComponent', () => {
@@ -7,9 +8,7 @@ describe('ChartsComponent', () => {
   let fixture: ComponentFixture<ChartsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ChartsComponent ]
-    })
+    configureComponentTest(ChartsComponent)
     .compileComponents();
   }));
 

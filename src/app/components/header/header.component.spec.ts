@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { configureComponentTest } from '../../component-test-setup.spec';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -7,9 +8,8 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
+    configureComponentTest(HeaderComponent)
+    .overrideComponent(HeaderComponent, { set: { template: '' } })
     .compileComponents();
   }));
 

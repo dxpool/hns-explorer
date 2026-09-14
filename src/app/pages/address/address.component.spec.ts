@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { configureComponentTest } from '../../component-test-setup.spec';
 import { AddressComponent } from './address.component';
 
 describe('AddressComponent', () => {
@@ -7,9 +8,7 @@ describe('AddressComponent', () => {
   let fixture: ComponentFixture<AddressComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AddressComponent ]
-    })
+    configureComponentTest(AddressComponent)
     .compileComponents();
   }));
 
