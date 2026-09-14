@@ -65,7 +65,7 @@
                 <td><a [routerLink]="[ '/block', item.height ]">{{ item.height }}</a></td>
                 <td>
                   <a *ngIf="item.pool.name" [href]="item.pool.url" target="_blank">
-                    <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png" width="15px">
+                    <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png?v=2" width="15px">
                     {{ item.pool.name }}
                   </a>
                 </td>

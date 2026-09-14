@@ -12,7 +12,7 @@
         <dd>{{ data.weight | number: '1.0' }}</dd>
         <dt *ngIf="data.pool.name">{{ 'block.miner' | translate }}</dt>
         <dd *ngIf="data.pool.name">
-          <a [href]="data.pool.url"><img src="../../../assets/images/pools/{{ data.pool.name | lowercase }}.png" width="15px">
+          <a [href]="data.pool.url"><img src="../../../assets/images/pools/{{ data.pool.name | lowercase }}.png?v=2" width="15px">
             {{ data.pool.name }}
           </a>
         </dd>

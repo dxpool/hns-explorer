@@ -74,7 +74,7 @@
         <td><a [routerLink]="[ '/block', item.height ]">{{ item.height }}</a></td>
         <td>
           <a *ngIf="item.pool.name" [href]="item.pool.url" target="_blank">
-            <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png" width="15px">
+            <img src="../../../assets/images/pools/{{ item.pool.name | lowercase }}.png?v=2" width="15px">
             {{ item.pool.name }}
           </a>
         </td>
@@ -119,7 +119,7 @@
             <td>
               <ng-container *ngIf="item.url; else networkTemplate">
                 <a [href]="item.url" target="_blank">
-                  <img src="../../../assets/images/pools/{{ item.poolName | lowercase }}.png" width="14px">
+                  <img src="../../../assets/images/pools/{{ item.poolName | lowercase }}.png?v=2" width="14px">
                   {{ item.poolName }}
                 </a>
               </ng-container>
