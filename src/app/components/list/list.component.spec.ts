@@ -15,11 +15,20 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    component.type = 'blocks';
     component.list = [];
+    component.loading = false;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the empty state inside the table', () => {
+    const emptyCell = fixture.nativeElement.querySelector('tbody td');
+
+    expect(emptyCell).toBeTruthy();
+    expect(emptyCell.getAttribute('colspan')).toBe('5');
   });
 });
