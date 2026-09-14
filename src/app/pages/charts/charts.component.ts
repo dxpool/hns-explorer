@@ -170,7 +170,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
   handleTicks(tick: number) {
     const unit = ['', 'K', 'M', 'G', 'T', 'P', 'E'];
     let index = 0;
-    for (let i = 0; i < unit.length; i++) {
+    for (const _item of unit) {
       if (tick < 1000) break;
 
       tick = tick / 1000;

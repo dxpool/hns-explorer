@@ -1,16 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-txs',
   templateUrl: './txs.component.html',
   styleUrls: ['./txs.component.scss']
 })
-export class TxsComponent {
+export class TxsComponent implements OnChanges {
   @Input() list: any[];
   @Input() page: number;
   @Input() total: number;
   @Input() pageSize: number;
-  @Input() changePage: Function;
+  @Input() changePage: (page: number) => void;
   @Input() address: string;
 
   data = [];

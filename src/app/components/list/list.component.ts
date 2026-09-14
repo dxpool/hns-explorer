@@ -12,12 +12,12 @@ export class ListComponent {
   @Input() page: number;
   @Input() total: number;
   @Input() pageSize: number;
-  @Input() changePage: Function;
+  @Input() changePage: (page: number) => void;
   @Input() loading: boolean;
 
   @Input() status: string[];
   @Input() selectedStatus: string;
-  @Input() changeStatus: Function;
+  @Input() changeStatus: (status: string) => void;
 
   iconUp = faAngleUp;
   iconDown = faAngleDown;

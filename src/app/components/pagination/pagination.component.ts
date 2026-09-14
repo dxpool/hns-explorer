@@ -1,16 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnChanges {
 
   @Input() page: number;
   @Input() total: number;
   @Input() pageSize: number;
-  @Input() changePage: Function;
+  @Input() changePage: (page: number) => void;
 
   pagination = [];
   max = 1;
@@ -47,7 +47,7 @@ export class PaginationComponent {
 
   getPageItem(page: number) {
     let display = page.toString();
-    let inactive = this.page == page;
+    let inactive = this.page === page;
 
     if (page === -1) {
       display = '...';

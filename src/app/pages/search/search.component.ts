@@ -36,13 +36,14 @@ export class SearchComponent implements OnDestroy {
   async checkQuery(q: string) {
     try {
       q = toASCII(q);
-      let result = await this.api.search(q);
+      const result = await this.api.search(q);
       switch (result.length) {
         case 0:
           this.notFound = true;
           break;
         case 1:
           this.router.navigateByUrl(result[0].url);
+          break;
         default:
           this.url = result;
           break;

@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
         this.poolData.push({
           poolName: item.poolName,
           count: item.count,
-          share: share,
+          share,
           hashrate: this.handleHashrate(share * this.hashrate),
           url: item.url
         });
@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
       this.poolPieChart = new Chart('poolPie', {
         type: 'pie',
         data: {
-          labels: labels,
+          labels,
           datasets: [{
             data: counts,
             backgroundColor: this.util.getColor(counts.length)
@@ -160,7 +160,7 @@ export class HomeComponent implements OnInit {
     if (str.indexOf('+') !== -1) {
       return {
         sub: str.substring(0, 6),
-        sup: parseInt(str.split('+')[1])
+        sup: parseInt(str.split('+')[1], 10)
       }
     } else {
       const index = str.length - 1;

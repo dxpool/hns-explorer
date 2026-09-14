@@ -32,13 +32,18 @@ export class ApiService {
   }
 
   getTxs(limit: number, offset?: number, height?: number, address?: string) {
-    const params = {
+    const params: {
+      limit: string,
+      offset: string,
+      address?: string,
+      height?: string
+    } = {
       limit: limit.toString(),
       offset: offset ? offset.toString() : '0'
     };
 
-    if (address) params['address'] = address;
-    if (height) params['height'] = height.toString();
+    if (address) params.address = address;
+    if (height) params.height = height.toString();
 
     return this.http.get<{
       result: Tx[],
@@ -51,13 +56,18 @@ export class ApiService {
   }
 
   getNames(limit: number, offset: number, status?: string, type?: string) {
-    const params = {
+    const params: {
+      limit: string,
+      offset: string,
+      status?: string,
+      type?: string
+    } = {
       limit: limit.toString(),
       offset: offset ? offset.toString() : '0'
     };
 
-    if (status) params['status'] = status;
-    if (type) params['type'] = type;
+    if (status) params.status = status;
+    if (type) params.type = type;
 
     return this.http.get<{
       limit: number,

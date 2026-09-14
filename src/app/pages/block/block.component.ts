@@ -36,7 +36,7 @@ export class BlockComponent implements OnDestroy {
   constructor(private api: ApiService, private router: Router) {
     this.spy = this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        this.height = parseInt(e.url.split('/')[2]);
+        this.height = parseInt(e.url.split('/')[2], 10);
         this.handleBlock(this.height);
         this.handleTxs(1);
       }
