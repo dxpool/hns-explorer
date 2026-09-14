@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   constructor(private http: HttpClient) { }
 
+  private apiUrl(path: string): string {
+    return `${environment.apiBaseUrl}${path}`;
+  }
+
   /** 获取区块链总览信息 */
   getSummary() {
-    return this.http.get<Network>('/api/summary').toPromise();
+    return this.http.get<Network>(this.apiUrl('/summary')).toPromise();
   }
 
   getBlocks(limit: number, offset: number) {
@@ -19,7 +24,7 @@ export class ApiService {
       offset: number,
       result: Block[],
       total: number
-    }>(`/api/blocks`, {
+    }>(this.apiUrl('/blocks'), {
       params: {
         limit: limit.toString(),
         offset: offset.toString()
@@ -28,7 +33,7 @@ export class ApiService {
   }
 
   getBlock(height: number) {
-    return this.http.get<Block>(`/api/blocks/${height}`).toPromise();
+    return this.http.get<Block>(this.apiUrl(`/blocks/${height}`)).toPromise();
   }
 
   getTxs(limit: number, offset?: number, height?: number, address?: string) {
@@ -48,11 +53,11 @@ export class ApiService {
     return this.http.get<{
       result: Tx[],
       total: number
-    }>('/api/txs', { params }).toPromise();
+    }>(this.apiUrl('/txs'), { params }).toPromise();
   }
 
   getTx(tx: string) {
-    return this.http.get<Tx>(`/api/txs/${tx}`).toPromise();
+    return this.http.get<Tx>(this.apiUrl(`/txs/${tx}`)).toPromise();
   }
 
   getNames(limit: number, offset: number, status?: string, type?: string) {
@@ -74,11 +79,11 @@ export class ApiService {
       offset: number,
       result: Name[],
       total: number
-    }>('/api/names', { params }).toPromise();
+    }>(this.apiUrl('/names'), { params }).toPromise();
   }
 
   getName(name: string) {
-    return this.http.get<Name>(`/api/names/${name}`).toPromise();
+    return this.http.get<Name>(this.apiUrl(`/names/${name}`)).toPromise();
   }
 
   getNameHistory(name: string) {
@@ -87,19 +92,19 @@ export class ApiService {
       offset: number,
       limit: number,
       result: NameHistory[]
-    }>(`/api/names/${name}/history`).toPromise();
+    }>(this.apiUrl(`/names/${name}/history`)).toPromise();
   }
 
   getAddress(addr: string) {
-    return this.http.get<Address>(`/api/addresses/${addr}`).toPromise();
+    return this.http.get<Address>(this.apiUrl(`/addresses/${addr}`)).toPromise();
   }
 
   search(query: string) {
-    return this.http.get<Search[]>('/api/search?q=' + query).toPromise();
+    return this.http.get<Search[]>(this.apiUrl('/search?q=' + query)).toPromise();
   }
 
   getCharts(type: string, startTime: number, endTime: number) {
-    return this.http.get<Chart[]>(`/api/charts/${type}`, {
+    return this.http.get<Chart[]>(this.apiUrl(`/charts/${type}`), {
       params: {
         startTime: startTime.toString(),
         endTime: endTime.toString()
@@ -108,7 +113,7 @@ export class ApiService {
   }
 
   getBlockDistribution(startTime: number, endTime: number) {
-    return this.http.get<Distribution>('/api/pool/distribution', {
+    return this.http.get<Distribution>(this.apiUrl('/pool/distribution'), {
       params: {
         startTime: startTime.toString(),
         endTime: endTime.toString()

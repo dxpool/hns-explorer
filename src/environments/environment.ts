@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiBaseUrl: '/api',
   gtm: {
     enabled: false,
     id: 'GTM-XXXXX'
