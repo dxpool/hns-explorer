@@ -40,11 +40,15 @@ API_BASE_URL=https://api.hnsfans.com npm run build
 
 The production output is written to `dist/hns-explorer`.
 
-### 5. Cloudflare Pages
+### 5. Cloudflare Workers
 
-Configure the Pages project with:
+The Worker configuration is pinned to the DxPool Cloudflare account in
+`wrangler.jsonc`. Build and deploy the static Angular application with:
 
-* Build command: `npm run build`
-* Build output directory: `dist/hns-explorer`
-* Environment variable: `API_BASE_URL=https://api.hnsfans.com`
-* Environment variable: `NODE_VERSION=24.15.0`
+```
+API_BASE_URL=https://api.hnsfans.com npm run build
+npx wrangler@4.131.2 deploy
+```
+
+The Worker serves `dist/hns-explorer` as static assets and falls back to
+`index.html` for Angular routes.
