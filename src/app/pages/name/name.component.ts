@@ -10,6 +10,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NameComponent implements OnDestroy {
   spy: any;
   name: string;
+  readonly fxWalletUrl = 'https://docs.fxwallet.com/domain-auction/domain-auction-entrance?utm_source=hnsfans&utm_medium=referral&utm_content=name_detail';
   data = {
     name: '',
     blocksUntil: 0,
@@ -46,6 +47,23 @@ export class NameComponent implements OnDestroy {
         this.handleHistory(this.name);
       }
     });
+  }
+
+  get fxWalletTextKey(): string {
+    if (this.data.reserved) {
+      return 'name.fxWalletManage';
+    }
+
+    switch (this.data.state) {
+      case 'INACTIVE':
+      case 'OPENING':
+        return 'name.fxWalletBid';
+      case 'BIDDING':
+      case 'REVEAL':
+        return 'name.fxWalletAuction';
+      default:
+        return 'name.fxWalletManage';
+    }
   }
 
   ngOnDestroy(): void {
